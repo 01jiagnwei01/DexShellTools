@@ -19,12 +19,13 @@ public class Main {
      */
     public static void main(String[] args) {
 
+        // 加载配置文件
         Map<String,String> config = UProperties.readProperties();
         // TODO Auto-generated method stub
         try {
             File payloadSrcFile = new File(config.get("shellOffApk"));   //需要加壳的程序
             System.out.println("apk size:"+payloadSrcFile.length());
-            File unShellDexFile = new File(config.get("shellDex"));    //解客dex
+            File unShellDexFile = new File(config.get("shellDex"));    //解壳的apk的dex
             byte[] payloadArray = encrpt(readFileBytes(payloadSrcFile));//以二进制形式读出apk，并进行加密处理//对源Apk进行加密操作
             byte[] unShellDexArray = readFileBytes(unShellDexFile);//以二进制形式读出dex
             int payloadLen = payloadArray.length;
